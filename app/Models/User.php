@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    const ROLE_ADMIN = 'Admin';
+    const ROLE_DRIVER = 'Driver';
+    const ROLE_USER = 'User';
+
+    const ROLES = ['Admin','Driver','User'];
     /**
      * The attributes that should be hidden for serialization.
      *
