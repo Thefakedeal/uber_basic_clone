@@ -20,9 +20,13 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            // Driver's only
             $table->double('latitude')->nullable();
             $table->double('longitude')->nullable();
             $table->timestamp('location_updated_at')->nullable();
+            $table->double('rate')->nullable();
+
+
             $table->enum('role',User::ROLES)->default(User::ROLE_USER);
             $table->rememberToken();
             $table->timestamps();
