@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +24,8 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function(){
-    Route::get('/', [PagesController::class,'home']);
+    Route::get('/', [PagesController::class,'home'])->name('home');
+    Route::resource('users', UserController::class);
 });
 
 Auth::routes();
