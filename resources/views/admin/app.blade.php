@@ -32,7 +32,16 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
+                
+                <div class="container-fluid py-4">
+                    @if (session('message'))
+                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    @endif
                     @yield('content')
                 </div>
                 <!--/. container-fluid -->
