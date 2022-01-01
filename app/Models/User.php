@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -46,4 +47,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeDrivers($query){
+        return $query->where('role', self::ROLE_DRIVER);
+    }
+
+    public function scopeNearbyDrivers($query,float $lat,float $lon ,int $distance_in_meters){
+        // difference of 0.000009009 equals 1 mtr in a flat model
+        $difference = $distance_in_meters * 0.000009009;
+        $min_lat = $lat - $difference;
+        $max_lat = $lat + $difference;
+        $min_lon = $lon - $difference;
+        $max_lon = $lon + $difference;
+
+        return $query->drivers()->whereBetween('latitude',[$min_lat,$max_lat])
+        ->whereBetween('longitude',[$min_lon, $max_lon])->where('location_updated_at','>=', Carbon::now()->subMinutes(30));
+    }
+
+    public function scopeUsers($query){
+        return $query->where('role', self::ROLE_USER);
+    }
 }
