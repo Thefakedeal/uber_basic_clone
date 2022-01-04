@@ -23,7 +23,8 @@ Route::get('/', function () {
 
 Route::group([
     'prefix' => 'admin',
-    'as' => 'admin.'
+    'as' => 'admin.',
+    'middleware' => 'admin'
 ], function(){
     Route::get('/', [PagesController::class,'home'])->name('home');
     Route::resource('users', UserController::class);

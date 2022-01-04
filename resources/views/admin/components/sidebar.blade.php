@@ -44,6 +44,14 @@
                     </a>
                   </li>
 
+                  <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="post">
+                      @csrf
+                      <button type="submit" class="btn btn-block btn-danger">
+                        Logout
+                      </button>
+                    </form>
+                  </li>
                   {{-- <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
