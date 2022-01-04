@@ -35,6 +35,14 @@
                       </a>
                   </li>
 
+                  <li class="nav-item">
+                    <a href="{{ route('admin.rides.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Rides
+                        </p>
+                    </a>
+                  </li>
 
                   {{-- <li class="nav-item menu-open">
             <a href="#" class="nav-link active">
