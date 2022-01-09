@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\RideController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Driver\PagesController as DriverPagesController;
+use App\Http\Controllers\Driver\RideController as DriverRideController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +31,15 @@ Route::group([
     Route::get('/', [PagesController::class,'home'])->name('home');
     Route::resource('users', UserController::class);
     Route::resource('rides', RideController::class)->only(['index']);
+});
+
+Route::group([
+    'prefix' => 'driver',
+    'as' => 'driver.',
+], function(){
+    Route::get('/', [DriverPagesController::class,'home'])->name('home');
+    Route::resource('rides', DriverRideController::class);
+
 });
 
 Auth::routes();
