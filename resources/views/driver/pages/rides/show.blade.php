@@ -122,8 +122,9 @@
             }
             
             tracking.last_location ={
-            latitude, longitude
+            latitude:latitude, longitude:longitude
             }
+            
             tracking.distance = parseFloat(distance) + parseFloat(tracking.distance);
             tracking.hasLastLocation= true
             localStorage.setItem(`ride-${ride_id}`, JSON.stringify(tracking));
