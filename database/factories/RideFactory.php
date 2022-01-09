@@ -20,10 +20,10 @@ class RideFactory extends Factory
         return [
             'user_id' => $user->id,
             'driver_id' => $driver->id,
-            'from_latitude'=>  27.7142 + (rand(-10,10)/100),
-            'from_longitude'=>  85.3145 + (rand(-10,10)/100),
-            'to_latitude'=>  27.7142 + (rand(-10,10)/100),
-            'to_longitude'=>  85.3145 + (rand(-10,10)/100),
+            'from_latitude'=>  26.6661+ (rand(-10,10)/100),
+            'from_longitude'=>  87.2878 + (rand(-10,10)/100),
+            'to_latitude'=>  26.6661+ (rand(-10,10)/100),
+            'to_longitude'=>  87.2878 + (rand(-10,10)/100),
             'status' => Ride::STATUSES[array_rand(Ride::STATUSES)],
             'is_completed' => $this->faker->boolean()
         ];
