@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    @livewireStyles
     @yield('styles')
 </head>
 
@@ -66,6 +67,7 @@
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
+    @livewireScripts
     @yield('scripts')
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->

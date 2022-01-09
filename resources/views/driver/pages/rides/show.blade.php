@@ -49,6 +49,9 @@
             <button class="btn btn-block btn-danger" id="reset">
                 Reset
             </button>
+            @if (!$ride->is_completed)
+                @livewire('endride',[$ride->id])
+            @endif
         </div>
     @elseif ($ride->is_cancelled)
         cancelled
