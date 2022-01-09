@@ -36,6 +36,7 @@ Route::group([
 Route::group([
     'prefix' => 'driver',
     'as' => 'driver.',
+    'middleware' => 'driver'
 ], function(){
     Route::get('/', [DriverPagesController::class,'home'])->name('home');
     Route::resource('rides', DriverRideController::class);
