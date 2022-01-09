@@ -33,8 +33,10 @@ class LoginController extends Controller
         switch(Auth::user()->role){
             case User::ROLE_ADMIN:
                 return route('admin.home');
+            case User::ROLE_DRIVER:
+                return route('driver.home');
             default:
-                return redirect(RouteServiceProvider::HOME);
+                return RouteServiceProvider::HOME;
         }
     }
 
