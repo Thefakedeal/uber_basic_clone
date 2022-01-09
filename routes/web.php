@@ -40,6 +40,8 @@ Route::group([
 ], function(){
     Route::get('/', [DriverPagesController::class,'home'])->name('home');
     Route::resource('rides', DriverRideController::class);
+    Route::post('rides/{id}/cancel', [DriverRideController::class,'cancel'])->name('rides.cancel');
+    Route::post('rides/{id}/accept', [DriverRideController::class,'accept'])->name('rides.accept');
 
 });
 

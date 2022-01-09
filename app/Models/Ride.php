@@ -22,4 +22,14 @@ class Ride extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function getIsPendingAttribute(){
+        return $this->status == self::STATUS_PENDING;
+    }
+    public function getIsAcceptedAttribute(){
+        return $this->status == self::STATUS_ACCEPTED;
+    }
+    public function getIsCancelledAttribute(){
+        return $this->status == self::STATUS_CANCELLED;
+    }
 }

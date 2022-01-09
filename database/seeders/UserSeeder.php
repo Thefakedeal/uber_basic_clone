@@ -29,6 +29,7 @@ class UserSeeder extends Seeder
             'role' => User::ROLE_DRIVER,
             'latitude'=> 27.7142,
             'longitude'=> 85.3145,
+            'rate' => 500,
             'location_updated_at'=> Carbon::now(),
         ]);
 
