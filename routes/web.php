@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\RideController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Driver\PagesController as DriverPagesController;
+use App\Http\Controllers\Driver\ProfileController;
 use App\Http\Controllers\Driver\RideController as DriverRideController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -42,7 +43,8 @@ Route::group([
     Route::resource('rides', DriverRideController::class);
     Route::post('rides/{id}/cancel', [DriverRideController::class,'cancel'])->name('rides.cancel');
     Route::post('rides/{id}/accept', [DriverRideController::class,'accept'])->name('rides.accept');
-
+    Route::put('/profile', ProfileController::class)->name('profile');
+    Route::view('/profile', 'driver.pages.profile.index')->name('profile');
 });
 
 Auth::routes();
