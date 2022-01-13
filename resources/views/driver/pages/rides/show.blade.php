@@ -36,23 +36,7 @@
         </div>
 
     @elseif ($ride->is_accepted)
-        <div class="container-fluid py-2">
-            <div class="py-1">
-                Distance Travelled: <span id="distance">0</span> m
-            </div>
-            <div class="py-1">
-                Total Cost: Rs. <span id="cost">0</span>
-            </div>
-            <button class="btn btn-block btn-primary" id="track">
-                Start Tracking
-            </button>
-            <button class="btn btn-block btn-danger" id="reset">
-                Reset
-            </button>
-            @if (!$ride->is_completed)
-                @livewire('endride',[$ride->id])
-            @endif
-        </div>
+        @livewire('track-ride',[$ride->id])
     @elseif ($ride->is_cancelled)
         cancelled
     @endif
@@ -70,96 +54,6 @@
         const end_btn = document.getElementById('end_point');
         const location_btn = document.getElementById('location');
 
-        @if ($ride->is_accepted && !$ride->is_completed)
-        
-            function getDistance(origin, destination) {
-            // return distance in meters
-            const lon1 = toRadian(origin[1]);
-            const lat1 = toRadian(origin[0]);
-            const lon2 = toRadian(destination[1]);
-            const lat2 = toRadian(destination[0]);
-        
-            const deltaLat = lat2 - lat1;
-            const deltaLon = lon2 - lon1;
-        
-            const a = Math.pow(Math.sin(deltaLat/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLon/2), 2);
-            const c = 2 * Math.asin(Math.sqrt(a));
-            const EARTH_RADIUS = 6371;
-            return c * EARTH_RADIUS * 1000;
-            }
-
-            function toRadian(degree) {
-            return degree*Math.PI/180;
-            }
-        
-        
-            const distanceElem = document.getElementById('distance');
-            const costElem = document.getElementById('cost');
-        
-        
-        
-            const track_btn = document.getElementById('track');
-            const reset = document.getElementById('reset');
-            const ride_id = {{ $ride->id }};
-            const tracking = localStorage.getItem(`ride-${ride_id}`)?JSON.parse(localStorage.getItem(`ride-${ride_id}`)):
-            {
-            start_tracking:false,
-            hasLastLocation: false,
-            last_location: {
-            latitude: null,
-            longitude: null
-            },
-            distance: 0,
-            unit_cost: {{ auth()->user()->rate ?? 0 }}
-            }
-        
-            distanceElem.innerText = tracking.distance;
-            costElem.innerText = tracking.distance * tracking.unit_cost;
-           
-        
-            function track(latitude, longitude){
-            let distance = 0;
-            if(tracking.hasLastLocation){
-            const {last_location} = tracking;
-            distance = getDistance([latitude,longitude],[last_location.latitude,last_location.longitude])
-            }
-            
-            tracking.last_location ={
-            latitude:latitude, longitude:longitude
-            }
-            
-            tracking.distance = parseFloat(distance) + parseFloat(tracking.distance);
-            tracking.hasLastLocation= true
-            localStorage.setItem(`ride-${ride_id}`, JSON.stringify(tracking));
-          
-            distanceElem.innerText = parseInt(tracking.distance);
-            costElem.innerText = parseInt(tracking.distance * tracking.unit_cost);
-            }
-            
-            track_btn.innerText = tracking.start_tracking?"Stop Tracking":"Start Tracking"
-
-            track_btn.addEventListener('click', function(e){
-            tracking.start_tracking = !tracking.start_tracking;
-            localStorage.setItem(`ride-${ride_id}`, JSON.stringify(tracking));
-            track_btn.innerText = tracking.start_tracking?"Stop Tracking":"Start Tracking"
-            })
-            
-            reset.addEventListener('click', function(e){
-                const tracking = localStorage.getItem(`ride-${ride_id}`)?JSON.parse(localStorage.getItem(`ride-${ride_id}`)): 
-                tracking.hasLastLocation = false;
-                tracking.last_location = {
-                latitude: null,
-                longitude: null
-                }
-                tracking.distance =0;
-                tracking.unit_cost = {{ auth()->user()->rate ?? 0 }}
-                distanceElem.innerText = tracking.distance;
-                costElem.innerText = tracking.distance * tracking.unit_cost;
-                tracking.start_tracking = false;
-                localStorage.setItem(`ride-${ride_id}`, JSON.stringify(tracking));
-                track_btn.innerText = "Start Tracking"
-            })
-        @endif
 
         const currentLocation = {
             hasLocation: false,
@@ -219,10 +113,12 @@
                         }
                     }) => {
                         if(currentLocation.latitude == latitude && currentLocation.longitude==longitude) return;
-                        if (currentLocation.currentMarker == null) {
-                            currentLocation.hasLocation = true;
                             currentLocation.latitude = latitude;
                             currentLocation.longitude = longitude;
+
+                        if (currentLocation.currentMarker == null) {
+                            currentLocation.hasLocation = true;
+                            
                             mymap.panTo([currentLocation.latitude, currentLocation.longitude])
                             currentLocation.currentMarker = L.marker([currentLocation.latitude, currentLocation
                                 .longitude
@@ -230,11 +126,7 @@
                             currentLocation.currentMarker.bindPopup("Your Location").openPopup();
                             return;
                         }
-                        @if ($ride->is_accepted && !$ride->is_completed)
-                            if(tracking.start_tracking){
-                            track(latitude,longitude)
-                            }
-                        @endif
+                     
                         currentLocation.currentMarker.setLatLng([currentLocation.latitude, currentLocation.longitude])
 
 
@@ -292,6 +184,7 @@
         })
 
         updateLocation();
+
         location_btn.addEventListener('click', function(e) {
             if (currentLocation.hasLocation) {
                 mymap.panTo([currentLocation.latitude, currentLocation.longitude]);

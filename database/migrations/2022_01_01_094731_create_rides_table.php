@@ -25,6 +25,7 @@ class CreateRidesTable extends Migration
             $table->enum('status', Ride::STATUSES)->default(Ride::STATUS_PENDING);
             $table->boolean('is_completed')->default(true);
             $table->text('message')->nullable();
+            $table->foreignId('track_ride_id')->nullable();
             $table->timestamps();
         });
     }
