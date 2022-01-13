@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @foreach ($rides as $ride)
+    @forelse ($rides as $ride)
     <a class="text-white " href="{{ route('driver.rides.show', $ride->id) }}" >
         <div class="card @if($ride->is_completed) text-muted text-decoration-line-through @endif">
             <div class="card-body">
@@ -15,6 +15,10 @@
             </div>
         </div>
     </a>
-    @endforeach
+    @empty
+     <h1 class="text-center text-muted">
+         Sorry No Rides Yet
+     </h1>
+    @endforelse
 
 @endsection

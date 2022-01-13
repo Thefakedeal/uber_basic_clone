@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\PagesController;
 use App\Http\Controllers\Admin\RideController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Driver\Auth\RegisterController;
 use App\Http\Controllers\Driver\PagesController as DriverPagesController;
 use App\Http\Controllers\Driver\ProfileController;
 use App\Http\Controllers\Driver\RideController as DriverRideController;
@@ -48,5 +49,8 @@ Route::group([
 });
 
 Auth::routes();
+
+Route::get('/driver/register', [RegisterController::class,'show'])->name('driver.register');
+Route::post('/driver/register', [RegisterController::class,'register'])->name('driver.register');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
