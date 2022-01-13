@@ -7,7 +7,7 @@
             Total Cost: Rs. <span id="cost">{{ $track->cost }} </span>
         </div>
         <div class="py-1">
-            Total Rate: Rs. <span id="cost">{{ $track->rate??0}} </span>
+            Total Rate: Rs. <span id="cost">{{ $track->rate??0}}/KM </span>
         </div>
         
         @if (!$ride->is_completed)

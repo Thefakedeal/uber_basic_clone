@@ -9,6 +9,6 @@ class TrackRide extends Model
 {
     use HasFactory;
     public function getCostAttribute(){
-        return $this->distance * $this->rate;
+        return round(($this->distance * $this->rate)/1000,2);
     }
 }
