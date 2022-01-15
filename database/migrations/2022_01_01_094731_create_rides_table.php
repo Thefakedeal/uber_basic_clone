@@ -23,7 +23,7 @@ class CreateRidesTable extends Migration
             $table->double('to_latitude');
             $table->double('to_longitude');
             $table->enum('status', Ride::STATUSES)->default(Ride::STATUS_PENDING);
-            $table->boolean('is_completed')->default(true);
+            $table->boolean('is_completed')->default(false);
             $table->text('message')->nullable();
             $table->foreignId('track_ride_id')->nullable();
             $table->timestamps();

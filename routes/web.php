@@ -7,6 +7,8 @@ use App\Http\Controllers\Driver\Auth\RegisterController;
 use App\Http\Controllers\Driver\PagesController as DriverPagesController;
 use App\Http\Controllers\Driver\ProfileController;
 use App\Http\Controllers\Driver\RideController as DriverRideController;
+use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\User\PagesController as UserPagesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +22,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group([
+    'as' =>'user.',
+    'middleware'=>'auth'
+], function(){
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', function () {
+        return view('users.pages.home');
+    });
+    Route::get('/drivers', [UserPagesController::class,'nearByDrivers'])->name('drivers');
+    Route::resource('bookings', BookingController::class)->only(['index','show','store']);
+    Route::post('bookings/{id}',[ BookingController::class, 'cancelRide'])->name('bookings.cancel');
 });
 
 Route::group([

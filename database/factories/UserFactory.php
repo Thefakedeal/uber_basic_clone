@@ -24,8 +24,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'role'=> $role,
-            'latitude'=> $is_driver?(float) 27.7142 + (rand(-10,10)/100):null,
-            'longitude'=> $is_driver?(float) 85.3145 + (rand(-10,10)/100):null,
+            'latitude'=> $is_driver?(float) 26.8189206 + (rand(-10,10)/1000):null,  //27.7142
+            'longitude'=> $is_driver?(float) 87.2863398 + (rand(-10,10)/1000):null,  //85.3145
+            'rate'=> $is_driver?rand(20,50):null,
             'location_updated_at'=> $is_driver?Carbon::now():null,
             'remember_token' => Str::random(10),
         ];
