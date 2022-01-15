@@ -15,7 +15,7 @@
                   <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
               </div>
               <div class="info">
-                  <a href="#" class="d-block">{{ auth()->user()->name ?? config('app.name') }}</a>
+                  <a href="{{ route('admin.home') }}" class="d-block">{{ auth()->user()->name ?? config('app.name') }}</a>
               </div>
           </div>
           <!-- Sidebar Menu -->

@@ -22,6 +22,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Auth::routes();
+
 Route::group([
     'as' =>'user.',
     'middleware'=>'auth'
@@ -58,7 +61,7 @@ Route::group([
     Route::view('/profile', 'driver.pages.profile.index')->name('profile');
 });
 
-Auth::routes();
+
 
 Route::get('/driver/register', [RegisterController::class,'show'])->name('driver.register');
 Route::post('/driver/register', [RegisterController::class,'register'])->name('driver.register');

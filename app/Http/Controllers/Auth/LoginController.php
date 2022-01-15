@@ -28,15 +28,26 @@ class LoginController extends Controller
      *
      * @var string
      */
-    public function redirectTo(){
-        
+    protected function redirectTo(){
         switch(Auth::user()->role){
             case User::ROLE_ADMIN:
                 return route('admin.home');
             case User::ROLE_DRIVER:
                 return route('driver.home');
             default:
-                return RouteServiceProvider::HOME;
+                return '/';
+        }
+    }
+
+    public function authenticated()
+    {
+        switch(Auth::user()->role){
+            case User::ROLE_ADMIN:
+                return redirect(route('admin.home'));
+            case User::ROLE_DRIVER:
+                return redirect(route('driver.home'));
+            default:
+                return redirect('/');
         }
     }
 
