@@ -37,6 +37,14 @@
                             Rs. {{ $ride->track_ride->rate??$ride->driver->rate }} per KM 
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Message
+                        </th>
+                        <td>
+                           {{$ride->message}} 
+                        </td>
+                    </tr>
                     @if ($ride->track_ride)
                     <tr>
                         <th>

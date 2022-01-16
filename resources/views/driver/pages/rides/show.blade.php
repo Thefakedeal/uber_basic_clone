@@ -13,6 +13,14 @@
                     {{ $ride->user->mobile ?? 'N/A' }}
                 </td>
             </tr>
+            <tr>
+                <th>
+                    Message
+                </th>
+                <td>
+                   {{$ride->message}} 
+                </td>
+            </tr>
         </table>
     </div>
     <div class="d-flex flex-wrap justify-content-around w-100 py-4 px-2">
