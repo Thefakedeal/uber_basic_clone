@@ -32,4 +32,9 @@ class Ride extends Model
     public function getIsCancelledAttribute(){
         return $this->status == self::STATUS_CANCELLED;
     }
+
+    public function track_ride(){
+        return $this->hasOne(TrackRide::class);
+    }
+
 }

@@ -64,7 +64,7 @@
             //     </div>
             // </div>
             const driverMarker = L.marker([driver.latitude, driver.longitude]).addTo(mymap);
-            driverMarker.bindPopup(`${driver.name} <br> Last Seen: ${driver.last_seen}`)
+            driverMarker.bindPopup(`${driver.name} - ${driver.rate} per KM <br> Last Seen: ${driver.last_seen}`)
 
 
             // Adding Divs 
@@ -76,7 +76,7 @@
             body.classList.add('card-body');
 
             const title = document.createElement('h6');
-            title.innerText = driver.name;
+            title.innerText = `${driver.name}- Rs. ${driver.rate} per KM `;
 
             const lastSeen = document.createElement('small');
             lastSeen.innerText = driver.last_seen;

@@ -11,4 +11,8 @@ class TrackRide extends Model
     public function getCostAttribute(){
         return round(($this->distance * $this->rate)/1000,2);
     }
+
+    public function ride(){
+        return $this->belongsTo(Ride::class);
+    }
 }

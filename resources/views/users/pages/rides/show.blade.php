@@ -29,6 +29,32 @@
                             {{ $ride->created_at->diffForHumans() }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            Rate
+                        </th>
+                        <td>
+                            Rs. {{ $ride->track_ride->rate??$ride->driver->rate }} per KM 
+                        </td>
+                    </tr>
+                    @if ($ride->track_ride)
+                    <tr>
+                        <th>
+                            Distance
+                        </th>
+                        <td>
+                            {{ number_format($ride->track_ride->distance/1000,2) }} km
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Total
+                        </th>
+                        <td>
+                            Rs. {{ $ride->track_ride->cost }}
+                        </td>
+                    </tr>
+                    @endif
                     @if ($ride->status == $ride::STATUS_PENDING)
                         <tr>
                             <th>Cancel</th>
