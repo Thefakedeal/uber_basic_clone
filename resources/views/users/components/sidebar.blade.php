@@ -24,10 +24,10 @@
                   data-accordion="false">
                   <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-         
+
                 <li class="nav-item">
                   <a href="{{ route('user.bookings.index') }}" class="nav-link">
-                      <i class="nav-icon fas fa-th"></i>
+                    <i class="nav-icon fas fa-map"></i>
                       <p>
                           Rides
                       </p>
@@ -37,8 +37,8 @@
                   <li class="nav-item">
                     <form action="{{ route('logout') }}" method="post">
                       @csrf
-                      <button type="submit" class="btn btn-block btn-danger">
-                        Logout
+                      <button type="submit" class="btn btn-block btn-primary">
+                        Logout <i class="fas fa-sign-out-alt"></i>
                       </button>
                     </form>
                   </li>

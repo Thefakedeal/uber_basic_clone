@@ -1,33 +1,47 @@
 @extends('driver.app')
 
 @section('content')
-    <div class="py-2 table-responsive">
-        <table class="table table-striped table-sm">
-            <tr>
-                <th>Name</th>
-                <td>{{ $ride->user->name }}</td>
-            </tr>
-            <tr>
-                <th>Contact</th>
-                <td>
-                    {{ $ride->user->mobile ?? 'N/A' }}
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    Message
-                </th>
-                <td>
-                   {{$ride->message}} 
-                </td>
-            </tr>
-        </table>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="py-2 table-responsive">
+                    <table class="table table-striped table-sm">
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ $ride->user->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Contact</th>
+                            <td>
+                                {{ $ride->user->mobile ?? 'N/A' }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="2">
+                                Message :
+                            </th>
+
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                {{$ride->message}}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="d-flex flex-wrap justify-content-around w-100 py-4 px-2">
+                    <button class="btn btn-sm btn-primary" id="st_point">Starting Point</button>
+                    <button class="btn btn-sm btn-primary" id="end_point">Destination</button>
+                    <button class="btn btn-sm btn-secondary" id="location">Your Location</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="d-flex flex-wrap justify-content-around w-100 py-4 px-2">
-        <button class="btn btn-sm btn-primary" id="st_point">Starting Point</button>
-        <button class="btn btn-sm btn-primary" id="end_point">Destination</button>
-        <button class="btn btn-sm btn-primary" id="location">Your Location</button>
-    </div>
+
     <div id="mapid"></div>
     @if ($ride->is_pending)
         <div class="d-flex flex-wrap justify-content-around w-100 py-4 px-2">
@@ -126,7 +140,7 @@
 
                         if (currentLocation.currentMarker == null) {
                             currentLocation.hasLocation = true;
-                            
+
                             mymap.panTo([currentLocation.latitude, currentLocation.longitude])
                             currentLocation.currentMarker = L.marker([currentLocation.latitude, currentLocation
                                 .longitude
@@ -134,7 +148,7 @@
                             currentLocation.currentMarker.bindPopup("Your Location").openPopup();
                             return;
                         }
-                     
+
                         currentLocation.currentMarker.setLatLng([currentLocation.latitude, currentLocation.longitude])
 
 

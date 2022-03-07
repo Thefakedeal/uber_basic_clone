@@ -5,76 +5,86 @@
     <div class="conatiner-fluid">
         <div class="card">
             <div class="card-header">
-                Ride Booking
+                <h3 class="m-0">
+                    Ride Booking
+                </h3>
             </div>
             <div class="card-body">
-                <table class="table table-sm table-striped">
-                    <tr>
-                        <th>Driver</th>
-                        <td>
-                            {{ $ride->driver->name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Status</th>
-                        <td>
-                            {{ $ride->status }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Booked
-                        </th>
-                        <td>
-                            {{ $ride->created_at->diffForHumans() }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Rate
-                        </th>
-                        <td>
-                            Rs. {{ $ride->track_ride->rate??$ride->driver->rate }} per KM 
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Message
-                        </th>
-                        <td>
-                           {{$ride->message}} 
-                        </td>
-                    </tr>
-                    @if ($ride->track_ride)
-                    <tr>
-                        <th>
-                            Distance
-                        </th>
-                        <td>
-                            {{ number_format($ride->track_ride->distance/1000,2) }} km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Total
-                        </th>
-                        <td>
-                            Rs. {{ $ride->track_ride->cost }}
-                        </td>
-                    </tr>
-                    @endif
-                    @if ($ride->status == $ride::STATUS_PENDING)
-                        <tr>
-                            <th>Cancel</th>
-                            <td>
-                                <form action="{{ route('user.bookings.cancel', $ride->id) }}" onsubmit="return confirm('Are You Sure?')" method="post">
-                                    @csrf
-                                    <button class="btn btn-sm btn-danger" type="submit">Cancel</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endif
-                </table>
+                <div class="container">
+                    <div class="row p-0">
+                        <div class="col-md-6 m-0">
+                            <table class="table table-sm table-striped">
+                                <tr>
+                                    <th>Driver</th>
+                                    <td>
+                                        {{ $ride->driver->name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Status</th>
+                                    <td>
+                                        {{ $ride->status }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Booked
+                                    </th>
+                                    <td>
+                                        {{ $ride->created_at->diffForHumans() }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Rate
+                                    </th>
+                                    <td>
+                                        Rs. {{ $ride->track_ride->rate??$ride->driver->rate }} per KM
+                                    </td>
+                                </tr>
+
+                                @if ($ride->track_ride)
+                                <tr>
+                                    <th>
+                                        Distance
+                                    </th>
+                                    <td>
+                                        {{ number_format($ride->track_ride->distance/1000,2) }} km
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <td>
+                                        Rs. {{ $ride->track_ride->cost }}
+                                    </td>
+                                </tr>
+                                @endif
+                                <tr>
+                                    <th>
+                                        Message
+                                    </th>
+                                    <td>
+                                       {{$ride->message}}
+                                    </td>
+                                </tr>
+
+                                @if ($ride->status == $ride::STATUS_PENDING)
+                                    <tr>
+                                        {{-- <th>Cancel</th> --}}
+                                        <td colspan="2">
+                                            <form action="{{ route('user.bookings.cancel', $ride->id) }}" onsubmit="return confirm('Are You Sure?')" method="post">
+                                                @csrf
+                                                <button class="btn btn-sm btn-danger" type="submit">Cancel</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="mapid">
@@ -94,7 +104,7 @@ crossorigin=""></script>
             scrollWheelZoom: false,
             gestureHandling: true,
     }).setView([{{ $ride->from_latitude }}, {{ $ride->from_longitude }}], 13);
-        
+
     mymap.on('focus', function() {
         mymap.scrollWheelZoom.enable();
     });
