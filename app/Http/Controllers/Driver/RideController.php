@@ -15,8 +15,10 @@ class RideController extends Controller
      */
     public function index(Request $request)
     {
-        $rides = Ride::where('driver_id', $request->user()->id)->orderBy('created_at','DESC')->get();
-        return view('driver.pages.rides.index', compact('rides'));
+        $accepted_rides = Ride::where('driver_id', $request->user()->id)->where('status', Ride::STATUS_ACCEPTED)->orderBy('created_at','DESC')->get();
+        $pending_rides = Ride::where('driver_id', $request->user()->id)->where('status', Ride::STATUS_PENDING)->orderBy('created_at','DESC')->get();
+        $cancelled_rides = Ride::where('driver_id', $request->user()->id)->where('status', Ride::STATUS_CANCELLED)->orderBy('created_at','DESC')->get();
+        return view('driver.pages.rides.index', compact('accepted_rides','pending_rides','cancelled_rides'));
     }
 
     /**
