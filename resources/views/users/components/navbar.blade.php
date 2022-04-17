@@ -1,16 +1,24 @@
- <!-- Navbar -->
- <nav class="main-header navbar navbar-expand navbar-dark">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="/" class="nav-link">Home</a>
-      </li>
-     
-    </ul>
-
-  
+  <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container py-1">
+      <a class="navbar-brand fs-3 fw-bold" href="#">Logo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Ride</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Become a driver</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
-  <!-- /.navbar -->
