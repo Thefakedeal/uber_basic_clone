@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container py-1">
       <a class="navbar-brand fs-3 fw-bold" href="#">Logo</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
