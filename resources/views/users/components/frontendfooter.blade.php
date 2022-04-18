@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="d-flex">
                     <h1>Logo</h1>
-                    <p class="ms-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem expedita a, necessitatibus, cum, ipsam pariatur nostrum nesciunt veritatis laborum vitae nobis. Inventore earum quia distin... <a href="#">Read more<span> <i class="fas fa-arrow-right"></i></span></a>
+                    <p class="ms-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem expedita a, necessitatibus, cum, ipsam pariatur nostrum nesciunt veritatis laborum vitae nobis. Inventore earum quia distin... <a href="/about">Read more<span> <i class="fas fa-arrow-right"></i></span></a>
                     </p>
                 </div>
             </div>
