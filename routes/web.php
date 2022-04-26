@@ -7,6 +7,7 @@ use App\Http\Controllers\Driver\Auth\RegisterController;
 use App\Http\Controllers\Driver\PagesController as DriverPagesController;
 use App\Http\Controllers\Driver\ProfileController;
 use App\Http\Controllers\Driver\RideController as DriverRideController;
+use App\Http\Controllers\User\AboutController;
 use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\PagesController as UserPagesController;
 use Illuminate\Support\Facades\Auth;
@@ -65,5 +66,6 @@ Route::group([
 
 Route::get('/driver/register', [RegisterController::class,'show'])->name('driver.register');
 Route::post('/driver/register', [RegisterController::class,'register'])->name('driver.register');
+Route::get('/about', [AboutController::class, 'about']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
