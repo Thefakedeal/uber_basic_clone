@@ -11,8 +11,8 @@
             <div class="col-md-3 text-center">
                 <p class="mb-0 fw-bold">Quick link</p>
                 <ul style="list-style-type: none; padding: 0; margin: 0;">
-                    <li><a href="/home" class="text-dark text-decoration-none">Home</a></li>
-                    <li><a href="/" class="text-dark text-decoration-none">Ride</a></li>
+                    <li><a href="/" class="text-dark text-decoration-none">Home</a></li>
+                    <li><a href="/ride" class="text-dark text-decoration-none">Ride</a></li>
                     <li><a href="/about" class="text-dark text-decoration-none">About us</a></li>
                     <li><a href="/driver/register" class="text-dark text-decoration-none">Become a Driver</a></li>
                 </ul>

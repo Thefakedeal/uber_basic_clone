@@ -26,12 +26,14 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::group([
     'as' =>'user.',
     'middleware'=>'auth'
 ], function(){
 
-    Route::get('/', function () {
+    Route::get('/ride', function () {
         return view('users.pages.home');
     });
     Route::get('/drivers', [UserPagesController::class,'nearByDrivers'])->name('drivers');
@@ -68,4 +70,4 @@ Route::get('/driver/register', [RegisterController::class,'show'])->name('driver
 Route::post('/driver/register', [RegisterController::class,'register'])->name('driver.register');
 Route::get('/about', [AboutController::class, 'about']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
